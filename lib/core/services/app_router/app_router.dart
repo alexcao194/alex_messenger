@@ -1,6 +1,7 @@
 import 'package:alex_messenger/app/authentication/presentation/screens/login_screen.dart';
 import 'package:alex_messenger/app/authentication/presentation/screens/signup_screen.dart';
 import 'package:alex_messenger/app/home/presentation/screens/home_screen.dart';
+import 'package:alex_messenger/app/profile/presentation/screens/profile_screen.dart';
 import 'package:alex_messenger/splash_screen.dart';
 import 'package:flutter/material.dart';
 class AppRouter {
@@ -17,6 +18,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case AppRoutes.signup:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
+      case AppRoutes.profile:
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
@@ -42,4 +45,5 @@ class AppRoutes {
   static const String login = '/login';
   static const String signup = '/signup';
   static const String home = '/home';
+  static const String profile = '/profile';
 }
