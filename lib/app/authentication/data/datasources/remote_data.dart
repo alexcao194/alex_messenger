@@ -18,7 +18,11 @@ class RemoteDataImpl extends RemoteData {
           password: password
       );
       if(userCredential.user != null) {
-        return userCredential.user!;
+        if(userCredential.user!.emailVerified) {
+          return userCredential.user!;
+        } else {
+          throw FirebaseAuthException(code: 'user-has-never-been-verified');
+        }
       } else {
         throw FirebaseAuthException(code: 'unknown');
       }
