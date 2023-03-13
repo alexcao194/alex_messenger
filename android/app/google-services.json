@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "582153316268",
+    "project_id": "alex-messenger",
+    "storage_bucket": "alex-messenger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582153316268:android:107a54622f069cf1f43c09",
+        "android_client_info": {
+          "package_name": "com.alexcao.messenger.alex_messenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582153316268-2qapildub5lblcho6v6vc7tji6t121tv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvAlReqTjyNLmY9qDaII2fwoF5aidh2f4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582153316268-2qapildub5lblcho6v6vc7tji6t121tv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
