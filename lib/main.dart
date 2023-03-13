@@ -1,3 +1,4 @@
+import 'package:alex_messenger/app/authentication/presentation/bloc/account/account_cubit.dart';
 import 'package:alex_messenger/app/authentication/presentation/bloc/authentication/authentication_bloc.dart';
 import 'package:alex_messenger/app/home/presentation/bloc/navigation/navigation_cubit.dart';
 import 'package:alex_messenger/core/services/app_router/app_router.dart';
@@ -17,6 +18,7 @@ void main() async {
       MultiBlocProvider(
           providers: [
             BlocProvider(create: (_) => NavigationCubit()),
+            BlocProvider(create: (_) => di.sl<AccountCubit>()),
             BlocProvider(create: (_) => di.sl<AuthenticationBloc>()),
           ],
           child: const MyApp()

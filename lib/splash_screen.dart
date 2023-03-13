@@ -1,19 +1,15 @@
-import 'dart:async';
-
-import 'package:alex_messenger/app/home/presentation/screens/home_screen.dart';
-import 'package:alex_messenger/core/services/app_router/app_router.dart';
+import 'package:alex_messenger/app/authentication/presentation/bloc/account/account_cubit.dart';
+import 'package:alex_messenger/app/authentication/presentation/bloc/authentication/authentication_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
   Widget build(BuildContext context) {
+    BlocProvider.of<AuthenticationBloc>(context).add(const AuthenticationEventReLogin());
+    context.read<AccountCubit>().get();
     return Scaffold(
       body: Container(
           alignment: Alignment.center,
@@ -32,13 +28,5 @@ class _SplashScreenState extends State<SplashScreen> {
           child: const Icon(Icons.flutter_dash)
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    Timer(const Duration(seconds: 2), () {
-      AppRouter.pushReplacement(const HomeScreen());
-    });
   }
 }

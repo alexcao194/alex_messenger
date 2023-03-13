@@ -16,6 +16,11 @@ class RemoteDataImpl extends RemoteData {
       var userCredential = await authenticator.signInWithEmailAndPassword(
           email: email,
           password: password
+      ).timeout(
+        const Duration(milliseconds: 5000),
+        onTimeout: () {
+          throw FirebaseAuthException(code: 'no-internet-connection');
+        },
       );
       if(userCredential.user != null) {
         if(userCredential.user!.emailVerified) {

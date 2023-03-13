@@ -19,3 +19,10 @@ class AuthenticationEventLogin extends AuthenticationEvent {
   @override
   List<Object?> get props => [account];
 }
+
+class AuthenticationEventReLogin extends AuthenticationEvent {
+  const AuthenticationEventReLogin();
+
+  @override
+  List<Object?> get props => [];
+}

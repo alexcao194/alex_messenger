@@ -1,8 +1,9 @@
 import 'dart:async';
-
 import 'package:alex_messenger/app/authentication/domain/entities/account.dart';
 import 'package:alex_messenger/app/authentication/domain/usecases/signup.dart';
 import 'package:alex_messenger/app/authentication/domain/usecases/login.dart';
+import 'package:alex_messenger/app/authentication/domain/usecases/get_account.dart';
+import 'package:alex_messenger/app/authentication/presentation/screens/login_screen.dart';
 import 'package:alex_messenger/app/home/presentation/screens/home_screen.dart';
 import 'package:alex_messenger/core/services/app_router/app_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,9 +17,11 @@ part 'authentication_state.dart';
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   final Signup signup;
   final Login login;
-  AuthenticationBloc({required this.signup, required this.login}) : super(AuthenticationInitial()) {
+  final GetAccount getAccount;
+  AuthenticationBloc({required this.signup, required this.login, required this.getAccount}) : super(AuthenticationInitial()) {
     on<AuthenticationEventSignup>(_onSignup);
     on<AuthenticationEventLogin>(_onLogin);
+    on<AuthenticationEventReLogin>(_onReLogin);
   }
 
   FutureOr<void> _onSignup(AuthenticationEventSignup event, Emitter<AuthenticationState> emit) async {
@@ -57,11 +60,22 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
             )
         );
         emit(AuthenticationStateLoginFail(message: failure.message));
+        AppRouter.pushReplacement(const LoginScreen());
       },
       (user) {
         emit(AuthenticationStateLoginSuccessful(user: user));
         AppRouter.pushReplacement(const HomeScreen());
       }
     );
+  }
+
+
+  FutureOr<void> _onReLogin(AuthenticationEventReLogin event, Emitter<AuthenticationState> emit) {
+    var account = getAccount.call();
+    if(account.email.isNotEmpty) {
+      add(AuthenticationEventLogin(account: account));
+    } else {
+      AppRouter.pushReplacement(const LoginScreen());
+    }
   }
 }
