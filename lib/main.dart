@@ -1,6 +1,7 @@
 import 'package:alex_messenger/app/authentication/presentation/bloc/account/account_cubit.dart';
 import 'package:alex_messenger/app/authentication/presentation/bloc/authentication/authentication_bloc.dart';
 import 'package:alex_messenger/app/home/presentation/bloc/navigation/navigation_cubit.dart';
+import 'package:alex_messenger/app/profile/presentation/bloc/user_info/user_info_bloc.dart';
 import 'package:alex_messenger/core/services/app_router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'injection_container.dart' as di;
@@ -20,6 +21,7 @@ void main() async {
             BlocProvider(create: (_) => NavigationCubit()),
             BlocProvider(create: (_) => di.sl<AccountCubit>()),
             BlocProvider(create: (_) => di.sl<AuthenticationBloc>()),
+            BlocProvider(create: (_) =>di.sl<UserInfoBloc>())
           ],
           child: const MyApp()
       )
